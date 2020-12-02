@@ -1,0 +1,10 @@
+name: "my-website"
+navbar:
+  title: "SanSalvador"
+  left:
+    - text: "Inicio"
+      href: index.html
+    - text: "Area de estudio"
+      href: area_de_estudio.html
+    - text: "Colaboradores"
+      href: Colaboradores.html
