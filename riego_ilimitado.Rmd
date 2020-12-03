@@ -84,7 +84,12 @@ for(i in 1:nrow(hru_info_sb)){
 
 xyz <- make.xyz(hru_info_sb$lon,hru_info_sb$lat,hru_info_sb$area,hru_info_sb$rot)
 
-cc = rainbow((ncol(xyz$z)))
+#cc = rainbow((ncol(xyz$z)))
+cc = c("orange","deeppink","red","darkmagenta","yellow",
+  "gold","darkgreen","burlywood",
+  "darkolivegreen","black","cyan")
+
+
 
 plot(subs, axes=F)
 draw.pie(xyz$x, xyz$y, xyz$z, radius = 5000, col=cc)
