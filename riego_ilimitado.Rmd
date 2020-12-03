@@ -211,6 +211,154 @@ donde:
 <!-- gras_rot: beef_high  -->
 
 
+# Balance de agua
+A continuación se muestra el balance de agua en los HRU que están sujetos a riego en los escenarios.
 
+## Evapotranspiración
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+
+load("./utilidades/hru_wb_2000_2005.RDATA")
+
+library(plotly)
+
+mydata = data.frame(et_3)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et03 <- fig %>% layout(yaxis = list(title="ET (mm/año)"), 
+                      showlegend = FALSE,
+                      autosize=FALSE,
+                      width=350,
+                      height=350,
+                      title="agrc3_rot")
+
+mydata = data.frame(et_4)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et04 <- fig %>% layout(yaxis = list(title="ET (mm/año)"), 
+                           showlegend = FALSE,
+                           autosize=FALSE,
+                           width=350,
+                           height=350,
+                           title="agrc4_rot")
+
+leafsync::sync(fig_et03,fig_et04)
+```
+ 
+ 
+<br><br><br><br>
+
+## Riego
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+
+load("./utilidades/hru_wb_2000_2005.RDATA")
+
+library(plotly)
+
+mydata = data.frame(irr_3)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et03 <- fig %>% layout(yaxis = list(title="Riego (mm/año)"), 
+                      showlegend = FALSE,
+                      autosize=FALSE,
+                      width=350,
+                      height=350,
+                      title="agrc3_rot")
+
+mydata = data.frame(irr_4)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et04 <- fig %>% layout(yaxis = list(title="Riego (mm/año)"), 
+                           showlegend = FALSE,
+                           autosize=FALSE,
+                           width=350,
+                           height=350,
+                           title="agrc4_rot")
+
+leafsync::sync(fig_et03,fig_et04)
+```
+
+
+ <br><br><br><br>
+
+## Caudal
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+
+load("./utilidades/hru_wb_2000_2005.RDATA")
+
+library(plotly)
+
+mydata = data.frame(wateryld_3)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et03 <- fig %>% layout(yaxis = list(title="Caudal (mm/año)"), 
+                      showlegend = FALSE,
+                      autosize=FALSE,
+                      width=350,
+                      height=350,
+                      title="agrc3_rot")
+
+mydata = data.frame(wateryld_4)/6
+fig <- plot_ly(mydata,y=~base, type = "box", name = "base")
+fig <- fig %>% add_trace(y = ~mgt_03_1, name="mgt_03_1")
+fig <- fig %>% add_trace(y = ~mgt_03_1y6, name="mgt_03_1y6")
+fig <- fig %>% add_trace(y = ~mgt_03_6, name="mgt_03_6")
+fig <- fig %>% add_trace(y = ~mgt_04_1, name="mgt_04_1")
+fig <- fig %>% add_trace(y = ~mgt_04_1y6, name="mgt_04_1y6")
+fig <- fig %>% add_trace(y = ~mgt_04_6, name="mgt_04_6")
+fig <- fig %>% add_trace(y = ~mgt_05_01, name="mgt_05_01")
+fig <- fig %>% add_trace(y = ~mgt_05_1y6, name="mgt_05_1y6")
+fig <- fig %>% add_trace(y = ~mgt_05_6, name="mgt_05_6")
+fig_et04 <- fig %>% layout(yaxis = list(title="Caudal (mm/año)"), 
+                           showlegend = FALSE,
+                           autosize=FALSE,
+                           width=350,
+                           height=350,
+                           title="agrc4_rot")
+
+leafsync::sync(fig_et03,fig_et04)
+```
 
 
