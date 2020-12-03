@@ -1,0 +1,152 @@
+---
+title: "Escenerio: Riego ilimitado"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE,warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(rmarkdown)
+library(knitr)
+```
+
+
+# Generalidades
+Esta sección muestra las salidas de modelo SWAT+ en la cuenca del San Salvador luego de suponer varios escenarios con una fuente ilimitada de agua para el riego. La fuente ilimitada es externa a la cuenca. Se aplican 3 umbrales de riego definidos en relación al estrés hídrico ($1- ET/PET$) a una combinación de 2 rotaciones. Esto da un total de 10 escenarios (inluyendo el base) que se muestran en la tabla: Escenarios de riego.  
+
+
+```{r}
+library(kableExtra)
+
+mytab = data.frame(rbind(c(1,"management_base.sch"," "," "," "),
+                         
+                         c(2,"management_03_1.sch",  0.3,"agrc3_rot", " "),
+                         c(3,"management_03_1y6.sch",0.3,"agrc3_rot" ,"agrc4_rot"),
+                         c(4,"management_03_6.sch",  0.3," ",         "agrc4_rot"),
+                         
+                         c(5,"management_04_1.sch",0.4,"agrc3_rot"," "),
+                         c(6,"management_04_1y6.sch",0.4,"agrc3_rot" ,"agrc4_rot"),
+                         c(7,"management_04_6.sch",0.4," ","agrc4_rot"),
+                         
+                         c(8,"management_05_1.sch",0.4,"agrc3_rot"," "),
+                         c(9,"management_05_1y6.sch",0.4,"agrc3_rot" ,"agrc4_rot"),
+                         c(10,"management_05_6.sch",0.4," ","agrc4_rot")))
+
+colnames(mytab) = c("Escenario", "archivo mgt", "estrés hídrico","rotación 1","rotación 2")
+
+kable(mytab, caption = "Escenarios de riego")%>%
+  kable_styling(c("striped", "bordered"))
+
+
+```
+
+
+## Uso del suelo
+El uso de suelo se ha considerado en las 8 categorías que se presentan en la siguiente imagen:
+
+
+```{r}
+library(maptools)
+library(sp)
+library(mapplots)
+subs <- readRDS("~/R_projects/DAIS_SS/shapefiles_RDS/subs.RDS")
+hru_info <- readRDS("~/R_projects/DAIS_SS/utilidades/hru_info.RDS")
+
+xy = coordinates(subs)
+
+hru_info$lat = NA
+hru_info$lon = NA
+
+for(i in 1:nrow(hru_info)){
+  hru_info$lat[i] = xy[hru_info$subbasin[i],2]
+  hru_info$lon[i] = xy[hru_info$subbasin[i],1]
+}
+
+
+
+xyz <- make.xyz(hru_info$lon,hru_info$lat,hru_info$area,hru_info$rot)
+
+
+
+tt = unique(hru_info$rot)
+cc = rainbow(length(tt))
+
+plot(subs, axes=F)
+draw.pie(xyz$x, xyz$y, xyz$z, radius = 5000, col=cc)
+legend.pie(460000,6290000,labels=tt, radius=7000, bty="n", col=cc,
+           cex=0.8, label.dist=1.3)
+
+
+```
+
+
+
+
+## Rotaciones
+Las rotaciones del modelo se muestran en las siguientes tablas:
+
+
+```{r}
+  kable(readRDS("./utilidades/agrc_rot.RDS"), caption = "agrc_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/agrc2_rot.RDS"), caption = "agrc2_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/agrc3_rot.RDS"), caption = "agrc3_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/agrc4_rot.RDS"), caption = "agrc4_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/agri_rot.RDS"), caption = "agri_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/agrp_rot.RDS"), caption = "agrp_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+<br><br><br><br>
+
+```{r}
+  kable(readRDS("./utilidades/gras_rot.RDS"), caption = "gras_rot") %>%
+  kable_styling(c("striped", "bordered")) %>%
+  scroll_box(height = "200px") 
+```
+
+
+
+
+
+
+
+
