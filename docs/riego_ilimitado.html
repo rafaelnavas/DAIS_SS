@@ -11,7 +11,7 @@
 
 
 
-<title>Escenerio: Riego ilimitado</title>
+<title>Escenario: Riego ilimitado</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -381,14 +381,14 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Escenerio: Riego ilimitado</h1>
+<h1 class="title toc-ignore">Escenario: Riego ilimitado</h1>
 
 </div>
 
 
 <div id="generalidades" class="section level1">
 <h1><span class="header-section-number">1</span> Generalidades</h1>
-<p>Esta sección muestra las salidas de modelo SWAT+ en la cuenca del San Salvador luego de suponer varios escenarios con una fuente ilimitada de agua para el riego. La fuente ilimitada es externa a la cuenca. Se aplican 3 umbrales de riego definidos en relación al estrés hídrico (<span class="math inline">\(1- ET/PET\)</span>) a una combinación de 2 rotaciones. Esto da un total de 10 escenarios (inluyendo el base) que se muestran en la tabla: Escenarios de riego.</p>
+<p>Esta sección muestra las salidas de modelo SWAT+ en la cuenca del San Salvador luego de suponer varios escenarios con una fuente ilimitada de agua para el riego. La fuente ilimitada es externa a la cuenca. Se aplican 3 umbrales de riego definidos en relación al estrés hídrico (<span class="math inline">\(1- ET/PET\)</span>) a una combinación de 2 rotaciones. Esto da un total de 10 escenarios (incluyendo el base) que se muestran en la tabla: Escenarios de riego.</p>
 <table class="table table-striped table-bordered" style="margin-left: auto; margin-right: auto;">
 <caption>
 Escenarios de riego
@@ -592,7 +592,7 @@ uso
 rotación
 </th>
 <th style="text-align:right;">
-area (%)
+área (%)
 </th>
 </tr>
 </thead>
@@ -718,6 +718,547 @@ watr_lum
 </table>
 <p>Se trabaja con 7 tipos de rotaciones. La siguiente imagen muestra la distribución espacial de cada rotación por subcuenca así como el uso del suelo para aquellas zonas sin rotación de cultivos.</p>
 <p><img src="riego_ilimitado_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<table class="table table-striped table-bordered" style="margin-left: auto; margin-right: auto;">
+<caption>
+Porcentaje de uso de suelo y rotaciones por subcuenca
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+subcuenca
+</th>
+<th style="text-align:right;">
+agrc_rot
+</th>
+<th style="text-align:right;">
+agrc2_rot
+</th>
+<th style="text-align:right;">
+agrc3_rot
+</th>
+<th style="text-align:right;">
+agrc4_rot
+</th>
+<th style="text-align:right;">
+agri_rot
+</th>
+<th style="text-align:right;">
+agrp_rot
+</th>
+<th style="text-align:right;">
+frst_lum
+</th>
+<th style="text-align:right;">
+gras_rot
+</th>
+<th style="text-align:right;">
+mont_lum
+</th>
+<th style="text-align:right;">
+urb_lum
+</th>
+<th style="text-align:right;">
+watr_lum
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+29.19
+</td>
+<td style="text-align:right;">
+14.60
+</td>
+<td style="text-align:right;">
+21.90
+</td>
+<td style="text-align:right;">
+7.30
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+9.34
+</td>
+<td style="text-align:right;">
+5.44
+</td>
+<td style="text-align:right;">
+11.16
+</td>
+<td style="text-align:right;">
+1.07
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+32.52
+</td>
+<td style="text-align:right;">
+16.26
+</td>
+<td style="text-align:right;">
+24.39
+</td>
+<td style="text-align:right;">
+8.13
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+16.87
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+31.18
+</td>
+<td style="text-align:right;">
+15.59
+</td>
+<td style="text-align:right;">
+23.38
+</td>
+<td style="text-align:right;">
+7.79
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+19.48
+</td>
+<td style="text-align:right;">
+2.57
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+33.55
+</td>
+<td style="text-align:right;">
+16.78
+</td>
+<td style="text-align:right;">
+25.16
+</td>
+<td style="text-align:right;">
+8.39
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+3.83
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+9.84
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+25.28
+</td>
+<td style="text-align:right;">
+12.64
+</td>
+<td style="text-align:right;">
+18.96
+</td>
+<td style="text-align:right;">
+6.32
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+34.08
+</td>
+<td style="text-align:right;">
+2.72
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+23.60
+</td>
+<td style="text-align:right;">
+11.80
+</td>
+<td style="text-align:right;">
+17.70
+</td>
+<td style="text-align:right;">
+5.90
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+<td style="text-align:right;">
+27.41
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+23.97
+</td>
+<td style="text-align:right;">
+11.98
+</td>
+<td style="text-align:right;">
+17.98
+</td>
+<td style="text-align:right;">
+5.99
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+38.00
+</td>
+<td style="text-align:right;">
+2.09
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+20.44
+</td>
+<td style="text-align:right;">
+10.22
+</td>
+<td style="text-align:right;">
+15.33
+</td>
+<td style="text-align:right;">
+5.11
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+46.79
+</td>
+<td style="text-align:right;">
+2.10
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+15.70
+</td>
+<td style="text-align:right;">
+7.85
+</td>
+<td style="text-align:right;">
+11.78
+</td>
+<td style="text-align:right;">
+3.93
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+11.04
+</td>
+<td style="text-align:right;">
+43.03
+</td>
+<td style="text-align:right;">
+5.15
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+25.69
+</td>
+<td style="text-align:right;">
+12.84
+</td>
+<td style="text-align:right;">
+19.26
+</td>
+<td style="text-align:right;">
+6.42
+</td>
+<td style="text-align:right;">
+0.37
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+35.18
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+21.95
+</td>
+<td style="text-align:right;">
+10.97
+</td>
+<td style="text-align:right;">
+16.46
+</td>
+<td style="text-align:right;">
+5.49
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.81
+</td>
+<td style="text-align:right;">
+43.08
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+23.00
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+<td style="text-align:right;">
+17.25
+</td>
+<td style="text-align:right;">
+5.75
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+41.99
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+29.50
+</td>
+<td style="text-align:right;">
+14.75
+</td>
+<td style="text-align:right;">
+22.12
+</td>
+<td style="text-align:right;">
+7.37
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+26.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+</tbody>
+</table>
 <p>donde:</p>
 <ul>
 <li>frst_lum: es el uso forestal</li>
@@ -3295,9 +3836,9 @@ null
 </div>
 <!-- agrc_rot: soja1-trigo-soja2-avena -->
 <!-- agrc2_rot: soja2-cebada-soja2-trigo -->
-<!-- agrc3_rot: soja1-avena-maiz-avena -->
-<!-- agrc4_rot: soja1-trigo-soja2-avena-maiz-avena -->
-<!-- agri_rot: maiz-avena-soja1-avena-soja1-avena-soja1-avena -->
+<!-- agrc3_rot: soja1-avena-maíz-avena -->
+<!-- agrc4_rot: soja1-trigo-soja2-avena-maíz-avena -->
+<!-- agri_rot: maíz-avena-soja1-avena-soja1-avena-soja1-avena -->
 <!-- agrip_rot: past_beff_high-soja1-avena-soja1  -->
 <!-- gras_rot: beef_high  -->
 </div>

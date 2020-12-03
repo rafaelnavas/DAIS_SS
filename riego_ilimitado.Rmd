@@ -1,5 +1,5 @@
 ---
-title: "Escenerio: Riego ilimitado"
+title: "Escenario: Riego ilimitado"
 output:
   html_document:
     toc: true
@@ -15,7 +15,7 @@ library(knitr)
 
 
 # Generalidades
-Esta sección muestra las salidas de modelo SWAT+ en la cuenca del San Salvador luego de suponer varios escenarios con una fuente ilimitada de agua para el riego. La fuente ilimitada es externa a la cuenca. Se aplican 3 umbrales de riego definidos en relación al estrés hídrico ($1- ET/PET$) a una combinación de 2 rotaciones. Esto da un total de 10 escenarios (inluyendo el base) que se muestran en la tabla: Escenarios de riego.  
+Esta sección muestra las salidas de modelo SWAT+ en la cuenca del San Salvador luego de suponer varios escenarios con una fuente ilimitada de agua para el riego. La fuente ilimitada es externa a la cuenca. Se aplican 3 umbrales de riego definidos en relación al estrés hídrico ($1- ET/PET$) a una combinación de 2 rotaciones. Esto da un total de 10 escenarios (incluyendo el base) que se muestran en la tabla: Escenarios de riego.  
 
 
 ```{r}
@@ -54,7 +54,7 @@ luse$area = round(luse$area/sum(luse$area)*100,2)
 
 luse$rot[luse$rot==luse$landuse] = ""
 
-kable(luse, caption = "Uso del suelo", col.names = c("uso","rotación","area (%)" ))%>%
+kable(luse, caption = "Uso del suelo", col.names = c("uso","rotación","área (%)" ))%>%
   kable_styling(c("striped", "bordered"))
 ```
 
@@ -73,28 +73,65 @@ xy = coordinates(subs)
 hru_info$lat = NA
 hru_info$lon = NA
 
-for(i in 1:nrow(hru_info)){
-  hru_info$lat[i] = xy[hru_info$subbasin[i],2]
-  hru_info$lon[i] = xy[hru_info$subbasin[i],1]
+hru_info_sb = aggregate(area~rot+subbasin, data=hru_info, FUN=sum)
+hru_info_sb$lon = NA
+hru_info_sb$lat = NA
+for(i in 1:nrow(hru_info_sb)){
+  hru_info_sb$lat[i] = xy[hru_info_sb$subbasin[i],2]
+  hru_info_sb$lon[i] = xy[hru_info_sb$subbasin[i],1]
 }
 
 
+xyz <- make.xyz(hru_info_sb$lon,hru_info_sb$lat,hru_info_sb$area,hru_info_sb$rot)
 
-xyz <- make.xyz(hru_info$lon,hru_info$lat,hru_info$area,hru_info$rot)
-
-tt = unique(hru_info$rot)
-cc = rainbow(length(tt))
+cc = rainbow((ncol(xyz$z)))
 
 plot(subs, axes=F)
 draw.pie(xyz$x, xyz$y, xyz$z, radius = 5000, col=cc)
-legend.pie(460000,6290000,labels=tt, radius=7000, bty="n", col=cc,
+legend.pie(460000,6290000,labels=colnames(xyz$z), radius=7000, bty="n", col=cc,
           cex=0.8, label.dist=1.3)
 
 legend.z <- round(max(rowSums(xyz$z,na.rm=TRUE)),0)
 legend.bubble(390000,6250000,z=c(3500,1500,500),round=1,maxradius=5000,bty="n",txt.cex=0.6)
-text(390000,6258000,"area (ha)",cex=0.8) 
+text(390000,6258000,"área (ha)",cex=0.8) 
 
 ```
+
+
+```{r}
+library(maptools)
+library(sp)
+library(mapplots)
+subs <- readRDS("~/R_projects/DAIS_SS/shapefiles_RDS/subs.RDS")
+hru_info <- readRDS("~/R_projects/DAIS_SS/utilidades/hru_info.RDS")
+
+xy = coordinates(subs)
+
+hru_info$lat = NA
+hru_info$lon = NA
+
+hru_info_sb = aggregate(area~rot+subbasin, data=hru_info, FUN=sum)
+hru_info_sb$lon = NA
+hru_info_sb$lat = NA
+for(i in 1:nrow(hru_info_sb)){
+  hru_info_sb$lat[i] = xy[hru_info_sb$subbasin[i],2]
+  hru_info_sb$lon[i] = xy[hru_info_sb$subbasin[i],1]
+}
+
+xyz <- make.xyz(hru_info_sb$lon,hru_info_sb$lat,hru_info_sb$area,hru_info_sb$rot)
+
+uso_tab = xyz$z
+uso_tab = round(uso_tab/apply(uso_tab,1,sum)*100,2)
+uso_tab = data.frame(uso_tab)
+
+uso_tab = data.frame(subcuenca=subs$Subbasin,uso_tab)
+rownames(uso_tab) = NULL
+
+
+kable(uso_tab, caption = "Porcentaje de uso de suelo y rotaciones por subcuenca")%>%
+  kable_styling(c("striped", "bordered"))
+```
+
 
 donde:
 
@@ -162,9 +199,9 @@ donde:
 
 <!-- agrc_rot: soja1-trigo-soja2-avena -->
 <!-- agrc2_rot: soja2-cebada-soja2-trigo -->
-<!-- agrc3_rot: soja1-avena-maiz-avena -->
-<!-- agrc4_rot: soja1-trigo-soja2-avena-maiz-avena -->
-<!-- agri_rot: maiz-avena-soja1-avena-soja1-avena-soja1-avena -->
+<!-- agrc3_rot: soja1-avena-maíz-avena -->
+<!-- agrc4_rot: soja1-trigo-soja2-avena-maíz-avena -->
+<!-- agri_rot: maíz-avena-soja1-avena-soja1-avena-soja1-avena -->
 <!-- agrip_rot: past_beff_high-soja1-avena-soja1  -->
 <!-- gras_rot: beef_high  -->
 
