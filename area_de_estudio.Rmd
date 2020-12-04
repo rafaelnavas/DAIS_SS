@@ -2,6 +2,8 @@
 title: "Area de estudio"
 ---
 
+# Ubicación Geográfica
+
 ```{r setup, include=FALSE,warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(rmarkdown)
@@ -18,4 +20,31 @@ rivs = readRDS("./shapefiles_RDS/rivs.RDS")
 mapview(subs, alpha.regions=0, legend=F,lwd=1.5, zcol="Subbasin", label= paste0("Subcuenca: ", round(subs$Subbasin))) + 
   mapview(rivs, color="blue",legend=F, label= paste0("Canal: ", round(rivs$Channel)))
 
+```
+
+<br><br><br><br>
+
+# Precipitación
+```{r}
+library(plotly)
+p = readRDS("./utilidades/lluvia_media_diaria_1985_2019.RDS")
+p$mes = format(p$Rdate,"%Y%m")
+p = aggregate(precip~mes,data=p,FUN=sum)
+p$Rdate = as.Date(paste0(p$mes,"01"), "%Y%m%d")
+p = p[,3:2]
+
+
+fig <- plot_ly(
+  x = p$Rdate,
+  y = p$precip,
+  type = "bar"
+)
+
+fig <- fig %>% layout(yaxis = list(title="Precipitación (mm/mes)"), 
+                           showlegend = FALSE,
+                           autosize=FALSE,
+                           #width=350,
+                           #height=350,
+                           title="Precipitación media mensual")
+fig
 ```
