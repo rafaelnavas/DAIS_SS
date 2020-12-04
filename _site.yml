@@ -10,7 +10,7 @@ navbar:
     - text: "Escenarios"
       menu:
         - text: "Riego ilimitado"
-          href: riego_ilimitado.html 
+          href: riego_ilimitado.html
     - text: "Colaboradores"
       href: Colaboradores.html
       

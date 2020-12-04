@@ -31,9 +31,9 @@ mytab = data.frame(rbind(c(1,"management_base.sch"," "," "," "),
                          c(6,"management_04_1y6.sch",0.4,"agrc3_rot" ,"agrc4_rot"),
                          c(7,"management_04_6.sch",0.4," ","agrc4_rot"),
                          
-                         c(8,"management_05_1.sch",0.4,"agrc3_rot"," "),
-                         c(9,"management_05_1y6.sch",0.4,"agrc3_rot" ,"agrc4_rot"),
-                         c(10,"management_05_6.sch",0.4," ","agrc4_rot")))
+                         c(8,"management_05_1.sch",0.5,"agrc3_rot"," "),
+                         c(9,"management_05_1y6.sch",0.5,"agrc3_rot" ,"agrc4_rot"),
+                         c(10,"management_05_6.sch",0.5," ","agrc4_rot")))
 
 colnames(mytab) = c("Escenario", "archivo mgt", "estrés hídrico","rotación 1","rotación 2")
 
